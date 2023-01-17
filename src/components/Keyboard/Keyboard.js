@@ -2,7 +2,12 @@ import { useCallback, useEffect } from "react";
 import { Key } from "../Key/Key";
 import { useBoard } from "../../context/BoardProvider";
 export const Keyboard = () => {
-  const { onSelectLetterHandler, onDeleteHandler, onEnterHandler } = useBoard();
+  const {
+    onSelectLetterHandler,
+    onDeleteHandler,
+    onEnterHandler,
+    disabledArr,
+  } = useBoard();
   const lineOneKeys = splitIntoArray("qwertyuiop");
   const lineTwoKeys = splitIntoArray("asdfghjkl");
   const lineThreeKeys = splitIntoArray("zxcvbnm");
@@ -38,18 +43,18 @@ export const Keyboard = () => {
     <div className="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {lineOneKeys.map((key) => (
-          <Key key={key} keyVal={key} />
+          <Key key={key} keyVal={key} disabled={disabledArr.includes(key)} />
         ))}
       </div>
       <div className="line2">
         {lineTwoKeys.map((key) => (
-          <Key key={key} keyVal={key} />
+          <Key key={key} keyVal={key} disabled={disabledArr.includes(key)} />
         ))}
       </div>
       <div className="line3">
         <Key keyVal={"ENTER"} bigKey={true} />
         {lineThreeKeys.map((key) => (
-          <Key key={key} keyVal={key} />
+          <Key key={key} keyVal={key} disabled={disabledArr.includes(key)} />
         ))}
         <Key keyVal={"DELETE"} bigKey={true} />
       </div>

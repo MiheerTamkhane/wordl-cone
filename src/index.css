@@ -1,0 +1,13 @@
+:root {
+  --permanant-bg: ;
+  --color-moon: hsl(220, 23%, 95%);
+  --color-sun: hsl(56, 100%, 40%);
+}
+.light-mode {
+  --color-body-bg: hsl(0, 0%, 88%);
+  --color-text: hsl(215, 28%, 17%);
+}
+.dark-mode {
+  --color-body-bg: hsl(197, 14%, 10%);
+  --color-text: hsl(270, 23%, 95%);
+}
