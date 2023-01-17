@@ -4,8 +4,10 @@ export const Letter = ({ letterPos, attemptVal }) => {
   const { board, currAttempt, setDisabledArr, correctWord } = useBoard();
   const letter = board[attemptVal][letterPos];
 
-  const correct = correctWord[letterPos] === letter;
-  const almost = !correct && letter !== "" && correctWord.includes(letter);
+  const correct = correctWord
+    ? correctWord.toUpperCase()[letterPos] === letter
+    : false;
+  const almost = !correct && letter !== "" && correctWord?.includes(letter);
   const letterState =
     currAttempt.attemptVal > attemptVal &&
     (correct ? "correct" : almost ? "almost" : "error");

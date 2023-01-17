@@ -6,6 +6,7 @@ const BoardContext = createContext(null);
 const BoardProvider = ({ children }) => {
   const [board, setBoard] = useState(boardDefault);
   const [words, setWords] = useState(new Set());
+  const [correctWord, setCorrectWord] = useState("");
   const [disabledArr, setDisabledArr] = useState([]);
   const [gameOver, setGameOver] = useState({
     over: false,
@@ -15,10 +16,6 @@ const BoardProvider = ({ children }) => {
     attemptVal: 0,
     letterPos: 0,
   });
-
-  const newWord = [...words];
-  let randomWord = newWord[Math.floor(Math.random() * newWord.length)];
-  const correctWord = randomWord?.toUpperCase();
 
   const onSelectLetterHandler = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -44,13 +41,13 @@ const BoardProvider = ({ children }) => {
       currWord += board[currAttempt.attemptVal][i];
     }
 
-    if (words.has(currWord)) {
+    if (words.has(currWord.toLowerCase())) {
       setCurrAttempt({ attemptVal: currAttempt.attemptVal + 1, letterPos: 0 });
     } else {
       alert("Word not found in bank!");
     }
 
-    if (currWord === correctWord) {
+    if (currWord.toLowerCase() === correctWord.toLowerCase()) {
       setGameOver({ over: true, guessedWord: true });
       return;
     }
@@ -61,9 +58,12 @@ const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     generateWords().then((res) => {
-      setWords(res);
+      setWords(res.wordsSet);
+      setCorrectWord(res.todaysWord.toUpperCase());
     });
   }, []);
+
+  console.log(correctWord);
   return (
     <BoardContext.Provider
       value={{
