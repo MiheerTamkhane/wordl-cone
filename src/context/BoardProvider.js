@@ -42,7 +42,7 @@ const BoardProvider = ({ children }) => {
     }
 
     console.log("current word : ", currWord, correctWord);
-
+    console.log(words?.has(currWord.toLowerCase()));
     if (words?.has(currWord.toLowerCase())) {
       setCurrAttempt({ attemptVal: currAttempt.attemptVal + 1, letterPos: 0 });
     } else {
