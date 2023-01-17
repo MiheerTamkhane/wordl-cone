@@ -14,7 +14,7 @@ export const Letter = ({ letterPos, attemptVal }) => {
     if (letter !== "" && !correct && !almost) {
       setDisabledArr((prev) => [...prev, letter]);
     }
-  }, [currAttempt.attemptVal, correct, almost, letter]);
+  }, [currAttempt.attemptVal, correct, almost, letter, setDisabledArr]);
   return (
     <div className="letter" id={letterState ? letterState : ""}>
       {letter}

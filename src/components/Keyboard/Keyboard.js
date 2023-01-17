@@ -12,20 +12,30 @@ export const Keyboard = () => {
   const lineTwoKeys = splitIntoArray("asdfghjkl");
   const lineThreeKeys = splitIntoArray("zxcvbnm");
 
-  const handleKeyboard = useCallback((event) => {
-    if (event.key === "Enter") {
-      onEnterHandler();
-    } else if (event.key === "Backspace") {
-      onDeleteHandler();
-    } else {
-      const allCombined = [...lineOneKeys, ...lineTwoKeys, ...lineThreeKeys];
-      allCombined.forEach((key) => {
-        if (event.key.toUpperCase() === key) {
-          onSelectLetterHandler(key);
-        }
-      });
-    }
-  });
+  const handleKeyboard = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        onEnterHandler();
+      } else if (event.key === "Backspace") {
+        onDeleteHandler();
+      } else {
+        const allCombined = [...lineOneKeys, ...lineTwoKeys, ...lineThreeKeys];
+        allCombined.forEach((key) => {
+          if (event.key.toUpperCase() === key) {
+            onSelectLetterHandler(key);
+          }
+        });
+      }
+    },
+    [
+      onEnterHandler,
+      onSelectLetterHandler,
+      onDeleteHandler,
+      lineOneKeys,
+      lineTwoKeys,
+      lineThreeKeys,
+    ]
+  );
 
   function splitIntoArray(str) {
     return str.split("").map((item) => item.toUpperCase());
