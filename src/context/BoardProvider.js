@@ -6,6 +6,7 @@ const BoardContext = createContext(null);
 const BoardProvider = ({ children }) => {
   const [board, setBoard] = useState(boardDefault);
   const [words, setWords] = useState(new Set());
+  const [correctWord, setCorrectWord] = useState("");
   const [disabledArr, setDisabledArr] = useState([]);
   const [gameOver, setGameOver] = useState({
     over: false,
@@ -15,8 +16,6 @@ const BoardProvider = ({ children }) => {
     attemptVal: 0,
     letterPos: 0,
   });
-
-  const correctWord = "RIGHT";
 
   const onSelectLetterHandler = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -59,7 +58,8 @@ const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     generateWords().then((res) => {
-      setWords(res);
+      setWords(res.wordsSet);
+      setCorrectWord(res.todaysWord.toUpperCase());
     });
   }, []);
   return (
