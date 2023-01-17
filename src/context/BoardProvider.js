@@ -16,6 +16,7 @@ const BoardProvider = ({ children }) => {
     attemptVal: 0,
     letterPos: 0,
   });
+  console.log(correctWord);
 
   const onSelectLetterHandler = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
