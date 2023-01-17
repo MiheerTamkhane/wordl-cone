@@ -41,6 +41,7 @@ const BoardProvider = ({ children }) => {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attemptVal][i];
     }
+    console.log("this is : ", words);
 
     if (words.has(currWord.toLowerCase())) {
       setCurrAttempt({ attemptVal: currAttempt.attemptVal + 1, letterPos: 0 });
@@ -60,6 +61,7 @@ const BoardProvider = ({ children }) => {
   useEffect(() => {
     generateWords().then((res) => {
       setWords(res.wordsSet);
+      console.log(res.todaysWord);
       setCorrectWord(res.todaysWord.toUpperCase());
     });
   }, []);
