@@ -5,7 +5,7 @@ const BoardContext = createContext(null);
 
 const BoardProvider = ({ children }) => {
   const [board, setBoard] = useState(boardDefault);
-  const [words, setWords] = useState(new Set());
+  const [words, setWords] = useState([]);
   const [correctWord, setCorrectWord] = useState("");
   const [disabledArr, setDisabledArr] = useState([]);
   const [gameOver, setGameOver] = useState({
@@ -40,10 +40,10 @@ const BoardProvider = ({ children }) => {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attemptVal][i];
     }
-
+    console.log(words);
     console.log("current word : ", currWord, correctWord);
     console.log(words?.includes(currWord.toLowerCase()));
-    if (words.length > 0 && words?.includes(currWord.toLowerCase())) {
+    if (words?.length > 0 && words?.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attemptVal: currAttempt.attemptVal + 1, letterPos: 0 });
     } else {
       alert("Word not found in bank!");
@@ -59,9 +59,10 @@ const BoardProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    generateWords().then((res) => {
-      setWords(res.wordsSet);
-      setCorrectWord(res.todaysWord.toUpperCase());
+    generateWords().then((result) => {
+      console.log(result);
+      setWords(result.wordsSet);
+      setCorrectWord(result.todaysWord.toUpperCase());
     });
   }, []);
 
