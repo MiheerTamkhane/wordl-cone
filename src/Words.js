@@ -1,5 +1,3 @@
-import wordList from "./wordsBank.txt?raw";
-
 export const boardDefault = [
   ["", "", "", "", ""],
   ["", "", "", "", ""],
