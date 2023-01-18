@@ -1,4 +1,4 @@
-// import wordsBank from "./wordsBank.txt";
+import wordList from "./wordsBank.txt?raw";
 
 export const boardDefault = [
   ["", "", "", "", ""],
@@ -12,7 +12,7 @@ export const boardDefault = [
 export const generateWords = async () => {
   let wordsSet = [];
   let todaysWord = "";
-  await fetch("/assets/wordsBank.txt")
+  await fetch(wordList)
     .then((res) => res.text())
     .then((data) => {
       wordsSet = data.split("\r\n");
