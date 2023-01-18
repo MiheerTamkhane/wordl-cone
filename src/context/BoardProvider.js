@@ -42,8 +42,8 @@ const BoardProvider = ({ children }) => {
     }
 
     console.log("current word : ", currWord, correctWord);
-    console.log(words?.has(currWord.toLowerCase()));
-    if (words.size > 0 && words?.has(currWord.toLowerCase())) {
+    console.log(words?.includes(currWord.toLowerCase()));
+    if (words.length > 0 && words?.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attemptVal: currAttempt.attemptVal + 1, letterPos: 0 });
     } else {
       alert("Word not found in bank!");
