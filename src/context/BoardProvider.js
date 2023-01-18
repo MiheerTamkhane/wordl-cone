@@ -58,7 +58,6 @@ const BoardProvider = ({ children }) => {
 
   useEffect(() => {
     generateWords().then((result) => {
-      console.log(result);
       setWords(result.wordsSet);
       setCorrectWord(result.todaysWord.toUpperCase());
     });
